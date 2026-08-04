@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Datenschutzerklärung - Finance Tracking</title>
+<style>
+  body { font-family: -apple-system, Segoe UI, Roboto, Arial, sans-serif; line-height: 1.6; max-width: 720px; margin: 2rem auto; padding: 0 1.25rem; color: #1a1a1a; }
+  h1 { font-size: 1.6rem; margin-bottom: 0.25rem; }
+  h2 { font-size: 1.15rem; margin-top: 2rem; }
+  .stand { color: #666; margin-bottom: 2rem; font-size: 0.9rem; }
+  ul { padding-left: 1.25rem; }
+  a { color: #4F46E5; }
+</style>
+</head>
+<body>
+
+<h1>Datenschutzerklärung - Finance Tracking</h1>
+<p class="stand">Stand: 4. August 2026</p>
+
+<h2>Verantwortlicher</h2>
+<p>
+Jan Liniger<br>
+E-Mail: <a href="mailto:jan.liniger@gmail.com">jan.liniger@gmail.com</a>
+</p>
+
+<h2>Kurzfassung</h2>
+<p>
+Finance Tracking ist eine lokale Vermögens-Tracking-App. Deine Finanzdaten (Kontonamen, Beträge, Stichtage,
+Notizen) werden ausschliesslich auf deinem Gerät in einer lokalen SQLite-Datenbank gespeichert. Die App hat
+keinen eigenen Server, sammelt keine Nutzungsdaten, zeigt keine Werbung und enthält keine Analyse- oder
+Tracking-Software Dritter.
+</p>
+
+<h2>Welche Daten werden verarbeitet</h2>
+<p>
+Die App verarbeitet ausschliesslich die Daten, die du selbst eingibst: Kontonamen, Kontotypen, Beträge,
+Erhebungs-Stichtage und optionale Notizen. Diese Daten verbleiben lokal auf deinem Gerät und werden von uns
+nicht erhoben, eingesehen oder an Dritte weitergegeben.
+</p>
+
+<h2>Biometrische Sperre / PIN</h2>
+<p>
+Optional lässt sich die App per Fingerabdruck, Gesichtserkennung oder PIN sperren. Dabei nutzt die App die
+Biometrie-Schnittstelle des Betriebssystems (Android BiometricPrompt) - die App selbst erhält keinen Zugriff auf
+biometrische Rohdaten, diese verbleiben im gesicherten Bereich des Betriebssystems. Bei Verwendung eines PIN wird
+lokal nur ein Hashwert des PIN gespeichert, niemals der PIN selbst im Klartext.
+</p>
+
+<h2>Cloud-Sync (optional)</h2>
+<p>
+Du kannst optional einen Cloud-Ordner (z. B. in Google Drive oder OneDrive, sofern die entsprechende App auf
+deinem Gerät installiert ist) verbinden, um deinen Datenstand manuell dorthin zu sichern. Dies geschieht über
+die Speicherzugriffs-Schnittstelle von Android (Storage Access Framework) - du wählst den Zielordner selbst aus,
+und die Daten werden direkt von deinem Gerät in den von dir gewählten Cloud-Speicher geschrieben. Wir als
+Entwickler haben keinen eigenen Server und keinen Zugriff auf diese Daten. Es gilt zusätzlich die
+Datenschutzerklärung des jeweiligen Cloud-Anbieters (z. B. Google oder Microsoft), den du selbst ausgewählt hast.
+</p>
+
+<h2>Export und Teilen</h2>
+<p>
+Über die Export-Funktion kannst du deine Daten als JSON- oder CSV-Datei exportieren und per Android-Freigabedialog
+(Teilen-Funktion) an eine App oder einen Kontakt deiner Wahl senden. Auch hier bestimmst du selbst das Ziel; wir
+erhalten dabei keine Kenntnis von deinen Daten.
+</p>
+
+<h2>Keine Werbung, keine Analyse-Tools</h2>
+<p>
+Die App enthält keine Werbe-SDKs, keine Analyse- oder Tracking-Software (z. B. kein Google Analytics, kein
+Firebase Analytics, keine Crash-Reporting-Dienste Dritter) und keine In-App-Käufe.
+</p>
+
+<h2>Berechtigungen</h2>
+<ul>
+  <li><strong>Biometrie (USE_BIOMETRIC):</strong> nur für die optionale App-Sperre.</li>
+  <li><strong>Dateizugriff:</strong> erfolgt ausschliesslich über Android-Systemdialoge (Dateiauswahl,
+      Speicherzugriffs-Schnittstelle) für Export/Import und Cloud-Sync - kein pauschaler Speicherzugriff.</li>
+</ul>
+
+<h2>Speicherdauer und Löschung</h2>
+<p>
+Deine Daten bleiben lokal gespeichert, bis du sie in der App löschst oder die App deinstallierst. Da wir keine
+eigene Server-Infrastruktur betreiben, findet keine zentrale Speicherung durch uns statt.
+</p>
+
+<h2>Deine Rechte</h2>
+<p>
+Da sämtliche Daten ausschliesslich lokal auf deinem Gerät verarbeitet werden und wir keinen Zugriff darauf
+haben, hast du jederzeit vollständige Kontrolle über deine Daten - Einsicht, Änderung und Löschung erfolgen
+direkt in der App. Fragen zum Datenschutz kannst du jederzeit per E-Mail an uns richten.
+</p>
+
+<h2>Kontakt</h2>
+<p>
+Bei Fragen zu dieser Datenschutzerklärung erreichst du uns unter
+<a href="mailto:jan.liniger@gmail.com">jan.liniger@gmail.com</a>.
+</p>
+
+<h2>Änderungen dieser Datenschutzerklärung</h2>
+<p>
+Diese Datenschutzerklärung kann bei Weiterentwicklung der App angepasst werden. Die jeweils aktuelle Fassung ist
+immer unter dieser Adresse abrufbar.
+</p>
+
+</body>
+</html>
