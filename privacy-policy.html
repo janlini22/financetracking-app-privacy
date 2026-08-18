@@ -16,7 +16,7 @@
 <body>
 
 <h1>Datenschutzerklärung - Finance Tracking</h1>
-<p class="stand">Stand: 4. August 2026</p>
+<p class="stand">Stand: 18. August 2026</p>
 
 <h2>Verantwortlicher</h2>
 <p>
@@ -26,17 +26,20 @@ E-Mail: <a href="mailto:jan.liniger@gmail.com">jan.liniger@gmail.com</a>
 
 <h2>Kurzfassung</h2>
 <p>
-Finance Tracking ist eine lokale Vermögens-Tracking-App. Deine Finanzdaten (Kontonamen, Beträge, Stichtage,
-Notizen) werden ausschliesslich auf deinem Gerät in einer lokalen SQLite-Datenbank gespeichert. Die App hat
-keinen eigenen Server, sammelt keine Nutzungsdaten, zeigt keine Werbung und enthält keine Analyse- oder
-Tracking-Software Dritter.
+Finance Tracking ist eine Vermögens-Tracking-App. Deine Finanzdaten (Kontonamen, Beträge, Stichtage, Notizen)
+werden primär auf deinem Gerät in einer lokalen SQLite-Datenbank gespeichert und die App funktioniert vollständig
+offline. Optional lässt sich ein verschlüsselter Cloud-Sync über Firebase (Google) aktivieren, damit derselbe
+Datenstand auf mehreren Geräten verfügbar ist - siehe Abschnitt "Cloud-Sync (optional)". Die App sammelt keine
+Nutzungsdaten, zeigt keine Werbung und enthält keine Analyse- oder Tracking-Software Dritter.
 </p>
 
 <h2>Welche Daten werden verarbeitet</h2>
 <p>
-Die App verarbeitet ausschliesslich die Daten, die du selbst eingibst: Kontonamen, Kontotypen, Beträge,
-Erhebungs-Stichtage und optionale Notizen. Diese Daten verbleiben lokal auf deinem Gerät und werden von uns
-nicht erhoben, eingesehen oder an Dritte weitergegeben.
+Die App verarbeitet die Daten, die du selbst eingibst: Kontonamen, Kontotypen, Beträge, Erhebungs-Stichtage und
+optionale Notizen. Diese Daten verbleiben primär lokal auf deinem Gerät. Aktivierst du den optionalen Cloud-Sync
+(siehe unten), kommt zusätzlich deine E-Mail-Adresse hinzu, die für die Anmeldung mit deinem Google-Konto
+verwendet wird. Wir selbst können deine Finanzdaten zu keinem Zeitpunkt einsehen und geben nichts davon an
+Dritte weiter.
 </p>
 
 <h2>Biometrische Sperre / PIN</h2>
@@ -49,12 +52,19 @@ lokal nur ein Hashwert des PIN gespeichert, niemals der PIN selbst im Klartext.
 
 <h2>Cloud-Sync (optional)</h2>
 <p>
-Du kannst optional einen Cloud-Ordner (z. B. in Google Drive oder OneDrive, sofern die entsprechende App auf
-deinem Gerät installiert ist) verbinden, um deinen Datenstand manuell dorthin zu sichern. Dies geschieht über
-die Speicherzugriffs-Schnittstelle von Android (Storage Access Framework) - du wählst den Zielordner selbst aus,
-und die Daten werden direkt von deinem Gerät in den von dir gewählten Cloud-Speicher geschrieben. Wir als
-Entwickler haben keinen eigenen Server und keinen Zugriff auf diese Daten. Es gilt zusätzlich die
-Datenschutzerklärung des jeweiligen Cloud-Anbieters (z. B. Google oder Microsoft), den du selbst ausgewählt hast.
+Aktivierst du den Cloud-Sync in den Einstellungen, meldest du dich mit deinem Google-Konto an (Firebase
+Authentication) - dabei werden ausschliesslich Name, E-Mail-Adresse und eine technische Kontokennung (uid)
+verwendet, kein Zugriff auf Google Drive oder andere Google-Dienste. Deine Finanzdaten werden anschliessend
+<strong>vor</strong> der Übertragung direkt auf deinem Gerät mit AES-256-GCM verschlüsselt und erst danach an
+Firebase (Firestore, Google Cloud) übermittelt und dort gespeichert - Firebase/Google erhält zu keinem Zeitpunkt
+lesbare Finanzdaten, sondern ausschliesslich Chiffretext. Der Verschlüsselungsschlüssel entsteht ausschliesslich
+lokal auf deinem Gerät und wird nie im Klartext übertragen oder bei Firebase gespeichert; als Sicherung dient eine
+einmalig angezeigte 24-Wörter-Wiederherstellungsphrase, die nur du besitzt. So können mehrere Geräte (z. B. von
+dir und einem weiteren eingeladenen Mitglied) denselben Datenstand nutzen. Ist der Cloud-Sync deaktiviert,
+funktioniert die App komplett lokal und es verlassen keine Daten das Gerät. Wir als Entwickler betreiben keine
+eigene Server-Infrastruktur; Firebase (Google Cloud) fungiert hierbei als Auftragsverarbeiter, ohne selbst
+lesenden Zugriff auf deine Finanzdaten zu haben. Es gilt zusätzlich die Datenschutzerklärung von Google
+(Firebase).
 </p>
 
 <h2>Export und Teilen</h2>
@@ -67,27 +77,37 @@ erhalten dabei keine Kenntnis von deinen Daten.
 <h2>Keine Werbung, keine Analyse-Tools</h2>
 <p>
 Die App enthält keine Werbe-SDKs, keine Analyse- oder Tracking-Software (z. B. kein Google Analytics, kein
-Firebase Analytics, keine Crash-Reporting-Dienste Dritter) und keine In-App-Käufe.
+Firebase Analytics, keine Crash-Reporting-Dienste Dritter) und keine In-App-Käufe. Firebase wird ausschliesslich
+für den optionalen, oben beschriebenen Cloud-Sync sowie die zugehörige Anmeldung eingesetzt, nicht zu
+Analyse- oder Werbezwecken.
 </p>
 
 <h2>Berechtigungen</h2>
 <ul>
   <li><strong>Biometrie (USE_BIOMETRIC):</strong> nur für die optionale App-Sperre.</li>
+  <li><strong>Kamera:</strong> nur für das optionale Scannen eines QR-Codes, um ein weiteres Gerät oder Mitglied
+      mit dem Cloud-Sync zu verbinden - es verlassen dabei keine Bild- oder Videodaten das Gerät, verarbeitet wird
+      ausschliesslich der gescannte QR-Inhalt.</li>
   <li><strong>Dateizugriff:</strong> erfolgt ausschliesslich über Android-Systemdialoge (Dateiauswahl,
-      Speicherzugriffs-Schnittstelle) für Export/Import und Cloud-Sync - kein pauschaler Speicherzugriff.</li>
+      Speicherzugriffs-Schnittstelle) für Export/Import - kein pauschaler Speicherzugriff.</li>
+  <li><strong>Internetzugriff:</strong> nur für den optionalen Cloud-Sync (Firebase) - bei deaktiviertem Sync
+      findet keine Netzwerkübertragung statt.</li>
 </ul>
 
 <h2>Speicherdauer und Löschung</h2>
 <p>
-Deine Daten bleiben lokal gespeichert, bis du sie in der App löschst oder die App deinstallierst. Da wir keine
-eigene Server-Infrastruktur betreiben, findet keine zentrale Speicherung durch uns statt.
+Deine Daten bleiben lokal gespeichert, bis du sie in der App löschst oder die App deinstallierst. Nutzt du den
+optionalen Cloud-Sync, bleibt der verschlüsselte Datenbestand zusätzlich in Firestore gespeichert, bis du dich
+abmeldest bzw. deine Mitgliedschaft am Tresor entfernst - danach wird dein Zugriff darauf beendet. Wir betreiben
+keine eigene Server-Infrastruktur; eine zentrale Speicherung durch uns selbst findet nicht statt.
 </p>
 
 <h2>Deine Rechte</h2>
 <p>
-Da sämtliche Daten ausschliesslich lokal auf deinem Gerät verarbeitet werden und wir keinen Zugriff darauf
-haben, hast du jederzeit vollständige Kontrolle über deine Daten - Einsicht, Änderung und Löschung erfolgen
-direkt in der App. Fragen zum Datenschutz kannst du jederzeit per E-Mail an uns richten.
+Da deine Finanzdaten stets clientseitig verschlüsselt sind, bevor sie unser Sichtfeld überhaupt verlassen könnten,
+und wir keinen Zugriff auf den Entschlüsselungsschlüssel haben, hast du jederzeit vollständige Kontrolle über
+deine Daten - Einsicht, Änderung und Löschung erfolgen direkt in der App, unabhängig davon, ob der Cloud-Sync
+aktiv ist. Fragen zum Datenschutz kannst du jederzeit per E-Mail an uns richten.
 </p>
 
 <h2>Kontakt</h2>
